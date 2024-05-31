@@ -49,11 +49,11 @@ In this project, we will make freestyle ***Jenkins*** pipeline with ***Ansible**
 6. Login to you Docker Hub account: `docker login`(so that we can push the image we’ll build and label here onto our dockerhub registry)
 7. Open the file `/etc/ansible/hosts` and enter the Docker host IP 
     
-    ![ansible hosts file.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/77ead240-a866-4aa1-883b-179fa59f3972/eee4c64e-e974-4351-83df-68c55819dabb/ansible_hosts_file.png)
+    ![ansible hosts file.png](https://github.com/Siddhant00Tiwari/jenkins_project/blob/52f13b6c6b1daf3710c1f689be357f25658238c6/images/ansible%20hosts%20file.png)
     
 8. Then write an ansible playbook in `/root/playbooks/docker.yaml`
     
-    ![ansible playbook.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/77ead240-a866-4aa1-883b-179fa59f3972/f509144c-ac28-4ee9-a8cf-02aa0b6b740a/ansible_playbook.png)
+    ![ansible playbook.png]()
     
     In this playbook, first we are stopping the already running container(while will be the case when it’s in production environment). Then we will remove the container and remove the image from our docker host. Then we will run a new container with the same name but from the new version of the image that we will upload on our Docker Hub registry. 
     

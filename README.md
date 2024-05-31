@@ -53,7 +53,7 @@ In this project, we will make freestyle ***Jenkins*** pipeline with ***Ansible**
     
 8. Then write an ansible playbook in `/root/playbooks/docker.yaml`
     
-    ![ansible playbook.png]()
+    ![ansible playbook.png](https://github.com/Siddhant00Tiwari/jenkins_project/blob/52f13b6c6b1daf3710c1f689be357f25658238c6/images/ansible%20playbook.png)
     
     In this playbook, first we are stopping the already running container(while will be the case when it’s in production environment). Then we will remove the container and remove the image from our docker host. Then we will run a new container with the same name but from the new version of the image that we will upload on our Docker Hub registry. 
     
@@ -72,41 +72,41 @@ In this project, we will make freestyle ***Jenkins*** pipeline with ***Ansible**
 1. Access jenkins through browser `https://jenkins_server_ip:8080`
 2. Unlock jenkins, the initial jenkins password is stored in `/var/lib/jenkins/secrets/intialAdminPassword`
     
-    ![unlock jenkins.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/77ead240-a866-4aa1-883b-179fa59f3972/607f9472-d8e4-4297-bd32-935e29c5c5f1/unlock_jenkins.png)
+    ![unlock jenkins.png](https://github.com/Siddhant00Tiwari/jenkins_project/blob/c01e3a14830bd0c91406a5650d9fc63e36441069/images/unlock%20jenkins.png)
     
 3. Select Install Suggested plugins.
     
-    ![install suggested plugins.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/77ead240-a866-4aa1-883b-179fa59f3972/1b4f4d79-cdb8-41be-a0a6-30dedfcc001d/install_suggested_plugins.png)
+    ![install suggested plugins.png](https://github.com/Siddhant00Tiwari/jenkins_project/blob/c01e3a14830bd0c91406a5650d9fc63e36441069/images/install%20suggested%20plugins.png)
     
 4. Create User ID and Password
     
-    ![username page.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/77ead240-a866-4aa1-883b-179fa59f3972/e06a10e1-5868-48f3-a6d0-9b20ffd86565/username_page.png)
+    ![username page.png](https://github.com/Siddhant00Tiwari/jenkins_project/blob/c01e3a14830bd0c91406a5650d9fc63e36441069/images/username%20page.png)
     
 5. When reaching Dashboard, go to Manage Jenkins and go to plugins and search in Available plugins “Publish over ssh”
     
-    ![ssh plugin.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/77ead240-a866-4aa1-883b-179fa59f3972/0ae5d221-06fc-41ea-95e3-b13fd7f17131/ssh_plugin.png)
+    ![ssh plugin.png](https://github.com/Siddhant00Tiwari/jenkins_project/blob/c01e3a14830bd0c91406a5650d9fc63e36441069/images/ssh%20plugin.png)
     
 6. Then in Manage Jenkins, go to System and scroll down to ssh server and add the Ansible server and Jenkins server and it’s root password. Save it and return to dashboard.
     
-    ![jenkins ssh.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/77ead240-a866-4aa1-883b-179fa59f3972/45737873-41a7-408c-aeda-50626eee0c4c/jenkins_ssh.png)
+    ![jenkins ssh.png](https://github.com/Siddhant00Tiwari/jenkins_project/blob/c01e3a14830bd0c91406a5650d9fc63e36441069/images/jenkins%20ssh.png)
     
-    ![ansible ssh.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/77ead240-a866-4aa1-883b-179fa59f3972/1925c7ad-e634-4dd7-988b-521967b5c906/ansible_ssh.png)
+    ![ansible ssh.png](https://github.com/Siddhant00Tiwari/jenkins_project/blob/c01e3a14830bd0c91406a5650d9fc63e36441069/images/ansible%20ssh.png)
     
 7. From Dashboard go to Add an Item and add a freestyle project and name it “Jenkins-project”.
     
-    ![add an item.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/77ead240-a866-4aa1-883b-179fa59f3972/f02bce6d-4e37-435c-87a9-4ec0ebdd368c/add_an_item.png)
+    ![add an item.png](https://github.com/Siddhant00Tiwari/jenkins_project/blob/c01e3a14830bd0c91406a5650d9fc63e36441069/images/add%20an%20item.png)
     
 8. In Jenkins-project, go to Configuration and scroll down to source code management and add this git repository.
     
-    ![git repo entry.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/77ead240-a866-4aa1-883b-179fa59f3972/a44f5f53-964a-4e61-b3b2-7a280a383024/git_repo_entry.png)
+    ![git repo entry.png](https://github.com/Siddhant00Tiwari/jenkins_project/blob/c01e3a14830bd0c91406a5650d9fc63e36441069/images/git%20repo%20entry.png)
     
 9. Then scroll down to Build steps and select “Send files or execute commands over SSH” and then add Jenkins in ssh server and in exec command put `rsync -avh /var/lib/jenkins/workspace/jenkins-project/Dockerfile root@{anisble_ip}:/opt` , this command copies Dockerfile from jenkins file and paste it in the `/opt` directory of the ansible host server.
     
-    ![jenkins ssh command.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/77ead240-a866-4aa1-883b-179fa59f3972/e257da7a-e367-4b2d-9901-59b23c75f368/jenkins_ssh_command.png)
+    ![jenkins ssh command.png](https://github.com/Siddhant00Tiwari/jenkins_project/blob/c01e3a14830bd0c91406a5650d9fc63e36441069/images/jenkins%20ssh%20command.png)
     
 10. Then scroll down and add another Build steps and select “Send files or execute commands over SSH” and then add ansible server and in exec command put:
     
-    ![ansible ssh commands.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/77ead240-a866-4aa1-883b-179fa59f3972/c8d2ad79-ae9a-4347-a58d-83e822b81d9d/ansible_ssh_commands.png)
+    ![ansible ssh commands.png](https://github.com/Siddhant00Tiwari/jenkins_project/blob/c01e3a14830bd0c91406a5650d9fc63e36441069/images/ansible%20ssh%20commands.png)
     
     1. `cd /opt`change the directory to /opt.
     2. `docker image build -t $JOB_NAME:$BUILD_ID .` build an image from the Dockerfile that has been copied by the jenkins server.
@@ -121,14 +121,14 @@ In this project, we will make freestyle ***Jenkins*** pipeline with ***Ansible**
 12. Apply and save
 13. Then in Jenkins-project, hit build now.
     
-    ![build now.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/77ead240-a866-4aa1-883b-179fa59f3972/40cb6d83-012d-4c42-91d8-618cce6ecc6a/build_now.png)
+    ![build now.png](https://github.com/Siddhant00Tiwari/jenkins_project/blob/c01e3a14830bd0c91406a5650d9fc63e36441069/images/build%20now.png)
     
     We see that our build was successful and our container is created.
     
 14. In our docker hub account we can find the image with latest tag.
     
-    ![image uploaded.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/77ead240-a866-4aa1-883b-179fa59f3972/3fe9ca59-f57c-4d05-a191-62710c31037c/image_uploaded.png)
+    ![image uploaded.png](https://github.com/Siddhant00Tiwari/jenkins_project/blob/c01e3a14830bd0c91406a5650d9fc63e36441069/images/image%20uploaded.png)
     
 15. And our website is hosted.
     
-    ![website.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/77ead240-a866-4aa1-883b-179fa59f3972/4befa3f4-a01f-4d0d-9225-44dd8698c532/website.png)
+    ![website.png](https://github.com/Siddhant00Tiwari/jenkins_project/blob/c01e3a14830bd0c91406a5650d9fc63e36441069/images/website.png)

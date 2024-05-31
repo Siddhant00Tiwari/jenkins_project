@@ -16,7 +16,7 @@ In this project, we will make freestyle ***Jenkins*** pipeline with ***Ansible**
 - A docker hub registry to store our built images.
 - Three AWS instances*(Amazon linux 2 in this case)*,  i.e Jenkins host, Ansible host and Docker host. And allow port 8080 in the security group.
     
-    ![intances.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/77ead240-a866-4aa1-883b-179fa59f3972/ba8222cf-25c4-413b-a23c-30f383bed035/intances.png)
+    ![intances.png](https://github.com/Siddhant00Tiwari/jenkins_project/blob/e2aef9245b79420a28f9bdc8d92bdffd3ea68cbd/images/intances.png)
     
 
 ## Setting up our instances
@@ -24,7 +24,7 @@ In this project, we will make freestyle ***Jenkins*** pipeline with ***Ansible**
 ### Jenkins Host
 
 1. Set up the hostname using : `sudo hostname set-hostname jenkins-host` and the root password.
-2. Import Jenkins repo using :                                                                                                      `sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo`
+2. Import Jenkins repo using : `sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo`
 3. Import Jenkins gpg key using: 
 `sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key` 
 4. Install Java JDK using : 
@@ -34,7 +34,7 @@ In this project, we will make freestyle ***Jenkins*** pipeline with ***Ansible**
 7. Install git : `yum install git`
 8. Enable and start Jenkins and git using : `systemctl enable --now jenkins.service ; systemctl enable --now git`
 9. Give permission for root SSH login and password login in `/etc/ssh/sshd_config` and restart the sshd service using `systemctl restart sshd`
-10. Generate SSH key and send it to the Ansible-Host using :                                                         `ssh-keygen` and `ssh-copy-id root@{ansible_host_ip}`
+10. Generate SSH key and send it to the Ansible-Host using : `ssh-keygen` and `ssh-copy-id root@{ansible_host_ip}`
 
 > *The Jenkins browser configuration will be done in later stage.*
 > 
@@ -42,7 +42,7 @@ In this project, we will make freestyle ***Jenkins*** pipeline with ***Ansible**
 ### Ansible Host
 
 1. Set up the hostname using : `sudo hostname set-hostname ansible-host` and the root password.
-2. Install Ansible package (! for amazon linux 2 instance we need to add EPEL repository)        `sudo amazon-linux-extras install epel -y`  and then install Ansible using :                          `sudo yum install -y ansible`
+2. Install Ansible package (! for amazon linux 2 instance we need to add EPEL repository)        `sudo amazon-linux-extras install epel -y`  and then install Ansible using :                         `sudo yum install -y ansible`
 3. Start and enable Ansible : `systemctl enable --now ansible`
 4. Install docker : `yum install docker`
 5. Start and enable docker: `systemctl enable --now docker`
